@@ -2,95 +2,408 @@
 
 @layer base {
   :root {
-    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-    line-height: 1.5;
+    /* Enhanced font stack with modern system fonts */
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 
+                'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 
+                'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    line-height: 1.6;
     font-weight: 400;
-
+    
+    /* Improved color scheme */
     color-scheme: light dark;
-    color: rgba(255, 255, 255, 0.87);
-    background-color: #242424;
-
+    color: rgba(255, 255, 255, 0.95);
+    background-color: #0f0f0f;
+    
+    /* Modern font rendering enhancements */
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* Smooth scrolling for better UX */
+  html {
+    scroll-behavior: smooth;
   }
 
   body {
     margin: 0;
     min-width: 320px;
     min-height: 100vh;
-    background-color: #242424;
-    color: rgba(255, 255, 255, 0.87);
+    background-color: inherit;
+    color: inherit;
     font-family: inherit;
+    
+    /* Improved text rendering */
+    text-rendering: optimizeSpeed;
+    line-height: 1.6;
   }
 
+  /* Enhanced focus styles for accessibility */
+  *:focus-visible {
+    outline: 2px solid #6366f1;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Modern link styles with smooth transitions */
   a {
     font-weight: 500;
-    color: #646cff;
+    color: #6366f1;
     text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
   }
+  
   a:hover {
-    color: #535bf2;
+    color: #818cf8;
+    transform: translateY(-1px);
+  }
+  
+  /* Animated underline effect */
+  a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: #818cf8;
+    transition: width 0.3s ease;
+  }
+  
+  a:hover::after {
+    width: 100%;
   }
 
+  /* Improved heading hierarchy with fluid typography */
   h1 {
-    font-size: 3.2em;
+    font-size: clamp(2.5rem, 5vw, 4rem);
     line-height: 1.1;
-    margin: 0;
+    margin: 0 0 1rem 0;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  
+  h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.2;
+    margin: 2rem 0 1rem 0;
+    font-weight: 600;
+  }
+  
+  h3 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    line-height: 1.3;
+    margin: 1.5rem 0 0.75rem 0;
+    font-weight: 600;
   }
 
+  /* Enhanced button styles with modern effects */
   button {
-    border-radius: 8px;
+    border-radius: 12px;
     border: 1px solid transparent;
-    padding: 0.6em 1.2em;
-    font-size: 1em;
-    font-weight: 500;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
     font-family: inherit;
     background-color: #1a1a1a;
-    color: #ffffff;
+    color: rgba(255, 255, 255, 0.95);
     cursor: pointer;
-    transition: border-color 0.25s, background-color 0.25s;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
   }
+  
+  button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+  }
+  
   button:hover {
-    border-color: #646cff;
+    border-color: #6366f1;
+    background-color: #2a2a2a;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
   }
-  button:focus,
+  
+  button:hover::before {
+    left: 100%;
+  }
+  
+  button:active {
+    transform: translateY(0);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
   button:focus-visible {
-    outline: 4px auto -webkit-focus-ring-color;
+    outline: 2px solid #6366f1;
+    outline-offset: 2px;
   }
 }
 
 @layer components {
-  /* Custom component classes can be defined here */
+  /* Enhanced button components */
   .btn-primary {
-    @apply bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded transition-colors;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: white;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    border: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+  }
+  
+  .btn-primary:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+    background: linear-gradient(135deg, #8b5cf6, #6366f1);
   }
   
   .btn-secondary {
-    @apply bg-gray-600 hover:bg-gray-700 text-white font-medium py-2 px-4 rounded transition-colors;
+    background: linear-gradient(135deg, #4b5563, #6b7280);
+    color: white;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn-secondary:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, #6b7280, #4b5563);
+  }
+  
+  .btn-ghost {
+    background: transparent;
+    color: #6366f1;
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-ghost:hover {
+    background: rgba(99, 102, 241, 0.1);
+    transform: translateY(-1px);
+  }
+  
+  /* Card component with glass morphism effect */
+  .card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .card:hover {
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.2);
+    transform: translateY(-4px);
+  }
+  
+  /* Gradient text utility */
+  .gradient-text {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Custom hero section styles */
+  .hero-background {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+
+  .hero-glow {
+    box-shadow: 0 0 50px rgba(99, 102, 241, 0.3);
+  }
+
+  .floating-animation {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .text-shadow-glow {
+    text-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
   }
 }
 
 @layer utilities {
-  /* Custom utilities can be defined here */
+  /* Advanced utilities for modern designs */
+  .backdrop-glass {
+    backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  .glow-effect {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+  }
+  
+  .glow-effect:hover {
+    box-shadow: 0 0 30px rgba(99, 102, 241, 0.5);
+  }
+
+  .gradient-border {
+    border: 2px solid transparent;
+    background: linear-gradient(45deg, #6366f1, #8b5cf6) border-box;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
 }
 
-/* Light mode support */
+/* Enhanced light mode with modern color palette */
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
+    color: #1a1a1a;
     background-color: #ffffff;
   }
+  
   body {
-    color: #213547;
+    color: #1a1a1a;
     background-color: #ffffff;
   }
-  a:hover {
-    color: #747bff;
+  
+  a {
+    color: #4f46e5;
   }
+  
+  a:hover {
+    color: #6366f1;
+  }
+  
   button {
-    background-color: #f9f9f9;
+    background-color: #f8fafc;
+    color: #1a1a1a;
+    border: 1px solid #e2e8f0;
+  }
+  
+  button:hover {
+    background-color: #f1f5f9;
+    border-color: #6366f1;
+  }
+  
+  .card {
+    background: rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
     color: #000000;
+    background-color: #ffffff;
+  }
+  
+  a {
+    color: #0000ff;
+    text-decoration: underline;
+  }
+  
+  button {
+    border: 2px solid #000000;
+  }
+}
+
+/* Mobile-first responsive adjustments */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  button {
+    padding: 0.875rem 1.25rem;
+    font-size: 0.9rem;
+  }
+  
+  .btn-primary, 
+  .btn-secondary, 
+  .btn-ghost {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+  }
+  
+  h1 {
+    font-size: clamp(2rem, 6vw, 3rem);
+  }
+  
+  h2 {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+  }
+  
+  h3 {
+    font-size: clamp(1.25rem, 4vw, 2rem);
+  }
+}
+
+/* Dark mode enhancements */
+@media (prefers-color-scheme: dark) {
+  .card {
+    background: rgba(255, 255, 255, 0.05);
+  }
+}
+
+/* Print styles */
+@media print {
+  .btn-primary,
+  .btn-secondary,
+  .btn-ghost {
+    background: #000000 !important;
+    color: #ffffff !important;
+    border: 1px solid #000000 !important;
+  }
+  
+  .card {
+    border: 1px solid #000000 !important;
+    box-shadow: none !important;
   }
 }
